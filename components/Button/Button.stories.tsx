@@ -1,22 +1,23 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "storybook/test";
 import { View } from "react-native";
-import { MyButton } from "./Button";
+import { EQButton } from "./Button";
+import { nebulaCorporateTheme } from "../../themes/nebulaCorporateTheme";
 
 const meta = {
-  title: "MyButton",
-  component: MyButton,
+  title: "EQButton",
+  component: EQButton,
   args: {
-    text: "Hello world",
+    text: "Simple Button",
   },
   decorators: [
     (Story) => (
-      <View style={{ padding: 16 }}>
-        <Story />
-      </View>
+          <View style={{ padding: 16 }}>
+            <Story />
+          </View>
     ),
   ],
-} satisfies Meta<typeof MyButton>;
+} satisfies Meta<typeof EQButton>;
 
 export default meta;
 
@@ -25,5 +26,6 @@ type Story = StoryObj<typeof meta>;
 export const Basic: Story = {
   args: {
     onPress: fn(),
+    passedTheme: nebulaCorporateTheme
   },
 };

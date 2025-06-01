@@ -3,13 +3,13 @@
 # getting started
 
 ```sh
-npx create-expo-app --template expo-template-storybook AwesomeStorybook
+npx create-expo-app --template expo-template-storybook eq-native-components
 ```
 
 or
 
 ```sh
-yarn create expo-app --template expo-template-storybook AwesomeStorybook
+yarn create expo-app --template expo-template-storybook eq-native-components
 ```
 
 # app

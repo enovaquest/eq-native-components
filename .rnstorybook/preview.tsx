@@ -1,8 +1,20 @@
 import { withBackgrounds } from "@storybook/addon-ondevice-backgrounds";
 import type { Preview } from "@storybook/react";
+import { ThemeProvider } from "../themes/themeProvider";
+
+const withThemeProvider = (Story, context) => {
+  return (
+      <ThemeProvider initialThemeName="primaryEQTheme">
+        <Story {...context} />
+      </ThemeProvider>
+  );
+};
 
 const preview: Preview = {
-  decorators: [withBackgrounds],
+  decorators: [
+    withBackgrounds,
+    withThemeProvider
+ ],
 
   parameters: {
     backgrounds: {
