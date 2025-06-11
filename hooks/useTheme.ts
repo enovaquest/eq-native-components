@@ -1,13 +1,5 @@
-import React, { createContext, useContext, useState, ReactNode, useMemo, useEffect } from 'react';
-import { Theme } from '../themes/themeType';
-
-interface ThemeContextType {
-  theme: Theme;
-  activeThemeName: string;
-  setTheme: (themeName: string) => void;
-}
-
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+import { useContext } from 'react';
+import { ThemeContext } from '../themes/themeProvider';
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);

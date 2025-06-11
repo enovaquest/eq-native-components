@@ -1,5 +1,16 @@
 import React, { ReactNode } from "react";
-import { View, Image, StyleSheet, Text } from "react-native";
+import {
+  View,
+  Image,
+  StyleSheet,
+  Text,
+  StyleProp,
+  ViewStyle,
+  ImageStyle,
+  TextStyle,
+  TouchableOpacity,
+  GestureResponderEvent,
+} from "react-native";
 import { useTheme } from "../../hooks/useTheme";
 import { Theme } from "../../themes/themeType";
 
@@ -8,14 +19,20 @@ type EQCardProps = {
   children: ReactNode;
   headerImage?: string;
   headerText?: string;
-  passedTheme?: Theme;
-  style?: any;
+  useTheme?: boolean; // Flag to control context usage
+  style?: {
+    card?: StyleProp<ViewStyle>;
+    headerImage?: StyleProp<ImageStyle>;
+    headerText?: StyleProp<TextStyle>;
+    cardContent?: StyleProp<ViewStyle>;
+  };
+  onPress?: (event: GestureResponderEvent) => void; // optional onPress
 };
 
 // ---------- Entry Component ----------
 export const EQCard = (props: EQCardProps) => {
-  if (props.passedTheme) {
-    return <EQCardInternal {...props} passedTheme={props.passedTheme!} />;
+  if (props.useTheme === false) {
+    return <EQCardInternal {...props} />;
   }
   return <EQCardWithContext {...props} />;
 };
@@ -23,7 +40,7 @@ export const EQCard = (props: EQCardProps) => {
 // ---------- With Context ----------
 const EQCardWithContext = (props: EQCardProps) => {
   const { theme } = useTheme();
-  return <EQCardInternal {...props} passedTheme={theme} />;
+  return <EQCardInternal {...props} theme={theme} />;
 };
 
 // ---------- Internal ----------
@@ -31,17 +48,39 @@ const EQCardInternal = ({
   children,
   headerImage,
   headerText,
-  passedTheme,
-  style,
-}: EQCardProps & { passedTheme: Theme }) => {
+  theme,
+  style = {},
+  onPress,
+}: EQCardProps & { theme?: Theme }) => {
+  const themeStyles = theme
+    ? {
+        card: { backgroundColor: theme.colors.background },
+        headerText: { color: theme.colors.primary },
+      }
+    : {};
+
+  const Container = onPress ? TouchableOpacity : View;
+
   return (
-    <View style={[styles.card, { backgroundColor: passedTheme.colors.background }, style]}>
+    <Container
+      style={[styles.card, themeStyles.card, style.card]}
+      onPress={onPress}
+      activeOpacity={onPress ? 0.7 : undefined}
+    >
       {headerImage && (
-        <Image source={{ uri: headerImage }} style={styles.headerImage} resizeMode="cover" />
+        <Image
+          source={{ uri: headerImage }}
+          style={[styles.headerImage, style.headerImage]}
+          resizeMode="cover"
+        />
       )}
-      {headerText && <Text style={[styles.headerText, { color: passedTheme.colors.primary }]}>{headerText}</Text>}
-      <View style={styles.cardContent}>{children}</View>
-    </View>
+      {headerText && (
+        <Text style={[styles.headerText, themeStyles.headerText, style.headerText]}>
+          {headerText}
+        </Text>
+      )}
+      <View style={[styles.cardContent, style.cardContent]}>{children}</View>
+    </Container>
   );
 };
 
@@ -50,8 +89,8 @@ const styles = StyleSheet.create({
   card: {
     borderRadius: 12,
     padding: 16,
-    elevation: 3, // Android shadow
-    shadowColor: "#000", // iOS shadow
+    elevation: 3,
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,

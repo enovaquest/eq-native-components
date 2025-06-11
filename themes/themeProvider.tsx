@@ -9,13 +9,13 @@ const themes: Record<ThemeName, Theme> = {
   nebulaCorporateTheme: nebulaCorporateTheme,
 };
 
-interface ThemeContextType {
+export interface ThemeContextType {
   theme: Theme;
   activeThemeName: ThemeName;
   setTheme: (themeName: ThemeName) => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
+export const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 interface ThemeProviderProps {
   children: ReactNode;
