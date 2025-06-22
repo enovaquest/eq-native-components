@@ -1,6 +1,4 @@
-import { StorybookConfig } from "@storybook/react-native-web-vite";
-
-const main: StorybookConfig = {
+const main = {
   stories: [
     "../components/**/*.stories.mdx",
     "../components/**/*.stories.@(js|jsx|ts|tsx)",
@@ -18,6 +16,6 @@ const main: StorybookConfig = {
   typescript: {
     reactDocgen: "react-docgen",
   },
-};
+} as const;
 
 export default main;
