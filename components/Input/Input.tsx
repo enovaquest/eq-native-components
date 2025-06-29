@@ -5,9 +5,10 @@ import {
   View,
   Text,
   KeyboardTypeOptions,
+  StyleProp,
+  ViewStyle,
+  TextStyle,
 } from "react-native";
-import { useTheme } from "../../hooks/useTheme";
-import { Theme } from "../../themes/themeType";
 
 type InputType = "text" | "email" | "password" | "number" | "phone" | "multiline";
 
@@ -16,57 +17,40 @@ type InputProps = {
   onChangeText: (text: string) => void;
   placeholder?: string;
   label?: string;
-  passedTheme?: Theme;
   type?: InputType;
   numberOfLines?: number;
+  containerStyle?: StyleProp<ViewStyle>;
+  labelStyle?: StyleProp<TextStyle>;
+  inputStyle?: StyleProp<ViewStyle>;
 };
 
-export const EQInput = (props: InputProps) => {
-  if (props.passedTheme) {
-    return <EQInputInternal {...props} passedTheme={props.passedTheme!} />;
-  }
-  return <EQInputWithContext {...props} />;
-};
-
-const EQInputWithContext = (props: InputProps) => {
-  const { theme } = useTheme();
-  return <EQInputInternal {...props} passedTheme={theme} />;
-};
-
-const EQInputInternal = ({
+export const EQInput: React.FC<InputProps> = ({
   value,
   onChangeText,
   placeholder,
   label,
-  passedTheme,
   type = "text",
   numberOfLines = 4,
-}: Required<Omit<InputProps, "placeholder" | "label" | "type" | "numberOfLines">> & {
-  placeholder?: string;
-  label?: string;
-  type?: InputType;
-  numberOfLines?: number;
+  containerStyle,
+  labelStyle,
+  inputStyle,
 }) => {
   const [focused, setFocused] = useState(false);
 
   const inputProps = getInputPropsByType(type, numberOfLines);
 
   return (
-    <View style={styles.wrapper}>
-      {label && <Text style={[styles.label, { color: passedTheme.colors.text }]}>{label}</Text>}
+    <View style={[styles.wrapper, containerStyle]}>
+      {label && <Text style={[styles.label, labelStyle]}>{label}</Text>}
       <TextInput
         value={value}
         onChangeText={onChangeText}
         placeholder={placeholder}
         style={[
           styles.input,
+          focused && styles.focused,
           inputProps.multiline && styles.multiline,
-          {
-            borderColor: focused
-              ? passedTheme.colors.primary
-              : passedTheme.colors.border,
-            color: passedTheme.colors.text,
-          },
+          inputStyle,
         ]}
         onFocus={() => setFocused(true)}
         onBlur={() => setFocused(false)}
@@ -111,6 +95,7 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     fontSize: 14,
     fontWeight: "500",
+    color: "#000", // Default text color
   },
   input: {
     height: 48,
@@ -119,6 +104,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     fontSize: 16,
     textAlignVertical: "center",
+    borderColor: "#ccc", // Default border color
+  },
+  focused: {
+    borderColor: "#281E4D", // Focused border color
   },
   multiline: {
     height: 100,

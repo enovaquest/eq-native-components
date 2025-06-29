@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
 import { EQInput } from "./Input";
-import { nebulaCorporateTheme } from "../../themes/nebulaCorporateTheme";
 import { useState } from "react";
 
 const meta: Meta<typeof EQInput> = {
@@ -25,7 +24,6 @@ export const Basic: Story = {
     label: "Email",
     placeholder: "Enter your email",
     type: "email",
-    passedTheme: nebulaCorporateTheme,
     value: "",
     onChangeText: () => {},
   },
@@ -40,7 +38,6 @@ export const Password: Story = {
     label: "Password",
     placeholder: "Enter your password",
     type: "password",
-    passedTheme: nebulaCorporateTheme,
     value: "",
     onChangeText: () => {},
   },
@@ -56,7 +53,6 @@ export const Multiline: Story = {
     placeholder: "Write a message...",
     type: "multiline",
     numberOfLines: 4,
-    passedTheme: nebulaCorporateTheme,
     value: "",
     onChangeText: () => {},
   },

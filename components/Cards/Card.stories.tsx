@@ -12,47 +12,33 @@ const meta: Meta<typeof EQCard> = {
       </View>
     ),
   ],
-};
+} satisfies Meta<typeof EQCard>;
 
 export default meta;
+
 type Story = StoryObj<typeof meta>;
 
 export const Basic: Story = {
   args: {
     headerText: "Card Title",
+    containerStyle: { backgroundColor: "#fff", padding: 16 },
+    headerTextStyle: { color: "#281E4D", fontSize: 18 },
     children: <Text>This is a basic EQCard with just text content.</Text>,
-    useTheme: true,
   },
 };
 
 export const WithImageHeader: Story = {
   args: {
-    headerImage: "https://picsum.photos/400/200",
     headerText: "Card with Image Header",
+    containerStyle: { backgroundColor: "#fff", padding: 16 },
+    headerTextStyle: { color: "#281E4D", fontSize: 18 },
     children: (
       <View>
         <Text style={{ marginBottom: 8 }}>
-          This card includes an image at the top and styled header text.
+          This card includes styled header text and can contain other children.
         </Text>
-        <Text>It can also contain any other children like buttons or inputs.</Text>
+        <Text>It can also include buttons or inputs.</Text>
       </View>
-    ),
-    useTheme: true,
-  },
-};
-
-export const WithoutTheme: Story = {
-  args: {
-    headerText: "Card Without Theme",
-    useTheme: false, // theme disabled
-    style: {
-      card: { backgroundColor: "lightgray", padding: 20 },
-      headerText: { color: "darkblue", fontSize: 20 },
-    },
-    children: (
-      <Text>
-        This card does not use the theme context and has custom styles applied.
-      </Text>
     ),
   },
 };

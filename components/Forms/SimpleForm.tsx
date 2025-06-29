@@ -1,14 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { EQInput } from "../Input/Input";
 import { EQButton } from "../Button/Button";
-import { Theme } from "../../themes/themeType";
-import { useTheme } from "../../hooks/useTheme";
 
-// ---------- Types ----------
 type FormField = {
   name: string;
   label: string;
@@ -19,33 +16,22 @@ type FormField = {
 export type EQFormProps = {
   fields: FormField[];
   onSubmit: (data: any) => void;
-  passedTheme?: Theme;
   schema: Yup.AnyObjectSchema;
   defaultValues?: Record<string, string>;
+  containerStyle?: StyleProp<ViewStyle>;
+  errorTextStyle?: StyleProp<TextStyle>;
+  buttonStyle?: StyleProp<ViewStyle>;
 };
 
-// ---------- Entry Component ----------
-export const EQForm = (props: EQFormProps) => {
-  if (props.passedTheme) {
-    return <EQFormInternal {...props} passedTheme={props.passedTheme!} />;
-  }
-  return <EQFormWithContext {...props} />;
-};
-
-// ---------- With Context ----------
-const EQFormWithContext = (props: EQFormProps) => {
-  const { theme } = useTheme();
-  return <EQFormInternal {...props} passedTheme={theme} />;
-};
-
-// ---------- Internal ----------
-const EQFormInternal = ({
+export const EQForm: React.FC<EQFormProps> = ({
   fields,
   onSubmit,
-  passedTheme,
   schema,
   defaultValues = {},
-}: EQFormProps & { passedTheme: Theme }) => {
+  containerStyle,
+  errorTextStyle,
+  buttonStyle,
+}) => {
   const {
     control,
     handleSubmit,
@@ -56,7 +42,7 @@ const EQFormInternal = ({
   });
 
   return (
-    <View style={styles.formContainer}>
+    <View style={[styles.formContainer, containerStyle]}>
       {fields.map((field) => (
         <View key={field.name}>
           <Controller
@@ -69,18 +55,21 @@ const EQFormInternal = ({
                 placeholder={field.placeholder}
                 label={field.label}
                 type={field.type}
-                passedTheme={passedTheme}
               />
             )}
           />
           {errors[field.name] && (
-            <Text style={[styles.error, { color: passedTheme.colors.error }]}>
+            <Text style={[styles.error, errorTextStyle]}>
               {(errors[field.name]?.message as string) || ""}
             </Text>
           )}
         </View>
       ))}
-      <EQButton text="Submit" onPress={handleSubmit(onSubmit)} passedTheme={passedTheme} />
+      <EQButton
+        text="Submit"
+        onPress={handleSubmit(onSubmit)}
+        containerStyle={buttonStyle}
+      />
     </View>
   );
 };
@@ -94,5 +83,6 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: -8,
     marginBottom: 8,
+    color: "red", // Default error color
   },
 });
