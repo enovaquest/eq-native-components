@@ -10,7 +10,7 @@ import {
   TextStyle,
 } from "react-native";
 
-type InputType = "text" | "email" | "password" | "number" | "phone" | "multiline";
+export type InputType = "text" | "email" | "password" | "number" | "phone" | "multiline";
 
 type InputProps = {
   value: string;

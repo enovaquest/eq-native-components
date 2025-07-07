@@ -3,14 +3,14 @@ import { View, Text, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-n
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { Input } from "../Input/Input";
+import { Input, InputType } from "../Input/Input";
 import { Button } from "../Button/Button";
 
 type FormField = {
   name: string;
   label: string;
   placeholder?: string;
-  type?: "text" | "email" | "password" | "number" | "phone" | "multiline";
+  type?: InputType;
 };
 
 export type FormProps = {
