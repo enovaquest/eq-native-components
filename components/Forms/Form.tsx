@@ -3,8 +3,8 @@ import { View, Text, StyleSheet, StyleProp, ViewStyle, TextStyle } from "react-n
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import { EQInput } from "../Input/Input";
-import { EQButton } from "../Button/Button";
+import { Input } from "../Input/Input";
+import { Button } from "../Button/Button";
 
 type FormField = {
   name: string;
@@ -13,7 +13,7 @@ type FormField = {
   type?: "text" | "email" | "password" | "number" | "phone" | "multiline";
 };
 
-export type EQFormProps = {
+export type FormProps = {
   fields: FormField[];
   onSubmit: (data: any) => void;
   schema: Yup.AnyObjectSchema;
@@ -23,7 +23,7 @@ export type EQFormProps = {
   buttonStyle?: StyleProp<ViewStyle>;
 };
 
-export const EQForm: React.FC<EQFormProps> = ({
+export const Form: React.FC<FormProps> = ({
   fields,
   onSubmit,
   schema,
@@ -49,7 +49,7 @@ export const EQForm: React.FC<EQFormProps> = ({
             control={control}
             name={field.name}
             render={({ field: { onChange, value } }) => (
-              <EQInput
+              <Input
                 value={value}
                 onChangeText={onChange}
                 placeholder={field.placeholder}
@@ -65,7 +65,7 @@ export const EQForm: React.FC<EQFormProps> = ({
           )}
         </View>
       ))}
-      <EQButton
+      <Button
         text="Submit"
         onPress={handleSubmit(onSubmit)}
         containerStyle={buttonStyle}

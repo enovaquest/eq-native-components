@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
-import { EQForm } from "./SimpleForm";
+import { Form } from "./Form";
 import * as Yup from "yup";
 
-const meta: Meta<typeof EQForm> = {
-  title: "EQForm",
-  component: EQForm,
+const meta: Meta<typeof Form> = {
+  title: "Form",
+  component: Form,
   decorators: [
     (Story) => (
       <View style={{ padding: 16 }}>
@@ -13,7 +13,7 @@ const meta: Meta<typeof EQForm> = {
       </View>
     ),
   ],
-} satisfies Meta<typeof EQForm>;
+} satisfies Meta<typeof Form>;
 
 export default meta;
 

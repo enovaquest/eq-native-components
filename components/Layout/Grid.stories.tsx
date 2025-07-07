@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View, Text } from "react-native";
-import { EQGrid } from "./Grid";
+import { Grid } from "./Grid";
 
-const meta: Meta<typeof EQGrid> = {
-  title: "EQGrid",
-  component: EQGrid,
+const meta: Meta<typeof Grid> = {
+  title: "Grid",
+  component: Grid,
   decorators: [
     (Story) => (
       <View style={{ padding: 16 }}>
@@ -12,7 +12,7 @@ const meta: Meta<typeof EQGrid> = {
       </View>
     ),
   ],
-} satisfies Meta<typeof EQGrid>;
+} satisfies Meta<typeof Grid>;
 
 export default meta;
 

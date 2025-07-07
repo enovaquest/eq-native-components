@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View } from "react-native";
-import { EQInput } from "./Input";
+import { Input } from "./Input";
 import { useState } from "react";
 
-const meta: Meta<typeof EQInput> = {
-  title: "EQInput",
-  component: EQInput,
+const meta: Meta<typeof Input> = {
+  title: "Input",
+  component: Input,
   decorators: [
     (Story) => (
       <View style={{ padding: 16 }}>
@@ -13,7 +13,7 @@ const meta: Meta<typeof EQInput> = {
       </View>
     ),
   ],
-} satisfies Meta<typeof EQInput>;
+} satisfies Meta<typeof Input>;
 
 export default meta;
 
@@ -29,7 +29,7 @@ export const Basic: Story = {
   },
   render: (args) => {
     const [value, setValue] = useState("");
-    return <EQInput {...args} value={value} onChangeText={setValue} />;
+    return <Input {...args} value={value} onChangeText={setValue} />;
   },
 };
 
@@ -43,7 +43,7 @@ export const Password: Story = {
   },
   render: (args) => {
     const [value, setValue] = useState("");
-    return <EQInput {...args} value={value} onChangeText={setValue} />;
+    return <Input {...args} value={value} onChangeText={setValue} />;
   },
 };
 
@@ -58,6 +58,6 @@ export const Multiline: Story = {
   },
   render: (args) => {
     const [value, setValue] = useState("");
-    return <EQInput {...args} value={value} onChangeText={setValue} />;
+    return <Input {...args} value={value} onChangeText={setValue} />;
   },
 };

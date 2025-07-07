@@ -8,7 +8,7 @@ type ButtonProps = {
   textStyle?: StyleProp<TextStyle>;
 };
 
-export const EQButton: React.FC<ButtonProps> = ({ onPress, text, containerStyle, textStyle }) => {
+export const Button: React.FC<ButtonProps> = ({ onPress, text, containerStyle, textStyle }) => {
   return (
     <TouchableOpacity
       style={[styles.container, containerStyle]} // Merge default and custom styles

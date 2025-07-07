@@ -8,7 +8,7 @@ type GridProps = {
   containerStyle?: StyleProp<ViewStyle>; // Custom styles for the grid container
 };
 
-export const EQGrid: React.FC<GridProps> = ({
+export const Grid: React.FC<GridProps> = ({
   children,
   columns = 2,
   gap = 16,

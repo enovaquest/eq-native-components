@@ -8,7 +8,7 @@ type CardProps = {
   headerTextStyle?: StyleProp<TextStyle>;
 };
 
-export const EQCard: React.FC<CardProps> = ({ children, headerText, containerStyle, headerTextStyle }) => {
+export const Card: React.FC<CardProps> = ({ children, headerText, containerStyle, headerTextStyle }) => {
   return (
     <View style={[styles.card, containerStyle]}>
       {headerText && <Text style={[styles.headerText, headerTextStyle]}>{headerText}</Text>}

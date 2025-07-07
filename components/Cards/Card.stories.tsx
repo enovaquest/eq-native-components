@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { View, Text } from "react-native";
-import { EQCard } from "./Card";
+import { Card } from "./Card";
 
-const meta: Meta<typeof EQCard> = {
-  title: "EQCard",
-  component: EQCard,
+const meta: Meta<typeof Card> = {
+  title: "Card",
+  component: Card,
   decorators: [
     (Story) => (
       <View style={{ padding: 16 }}>
@@ -12,7 +12,7 @@ const meta: Meta<typeof EQCard> = {
       </View>
     ),
   ],
-} satisfies Meta<typeof EQCard>;
+} satisfies Meta<typeof Card>;
 
 export default meta;
 

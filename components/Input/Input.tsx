@@ -24,7 +24,7 @@ type InputProps = {
   inputStyle?: StyleProp<ViewStyle>;
 };
 
-export const EQInput: React.FC<InputProps> = ({
+export const Input: React.FC<InputProps> = ({
   value,
   onChangeText,
   placeholder,
