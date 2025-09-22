@@ -2,6 +2,8 @@ const main = {
   stories: [
     "../components/**/*.stories.mdx",
     "../components/**/*.stories.@(js|jsx|ts|tsx)",
+    "../widgets/**/*.stories.mdx",
+    "../widgets/**/*.stories.@(js|jsx|ts|tsx)",
   ],
 
   addons: ["@storybook/addon-docs", "@chromatic-com/storybook"],
