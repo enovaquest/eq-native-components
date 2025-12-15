@@ -13,7 +13,10 @@
     "storybook-generate": "sb-rn-get-stories",
     "storybook": "cross-env EXPO_PUBLIC_STORYBOOK_ENABLED='true' expo start",
     "storybook:ios": "cross-env EXPO_PUBLIC_STORYBOOK_ENABLED='true' expo start --ios",
-    "storybook:android": "cross-env EXPO_PUBLIC_STORYBOOK_ENABLED='true' expo start --android"
+    "storybook:android": "cross-env EXPO_PUBLIC_STORYBOOK_ENABLED='true' expo start --android",
+    "builder": "vite",
+    "builder:build": "vite build",
+    "builder:preview": "vite preview"
   },
   "dependencies": {
     "@gorhom/bottom-sheet": "^5.1.2",
@@ -25,8 +28,11 @@
     "expo-constants": "~17.1.6",
     "expo-status-bar": "~2.2.3",
     "react": "19.0.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "19.0.0",
     "react-hook-form": "^7.56.4",
+    "react-icons": "^5.5.0",
     "react-native": "0.79.2",
     "react-native-gesture-handler": "~2.24.0",
     "react-native-reanimated": "~3.17.4",
@@ -50,6 +56,7 @@
     "@storybook/react-native-web-vite": "^9.0.12",
     "@storybook/types": "^8.6.14",
     "@types/react": "~19.0.10",
+    "@vitejs/plugin-react": "^5.1.1",
     "babel-plugin-react-docgen-typescript": "^1.5.1",
     "cross-env": "^7.0.3",
     "storybook": "^9",
